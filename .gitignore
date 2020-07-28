@@ -16,3 +16,10 @@ az2tfpy.sh
 validate.sh
 testcases
 *.bck
+
+# IntelliJ droppings
+/.idea
+*.iml
+
+# local Python virtualenv
+/.venv/

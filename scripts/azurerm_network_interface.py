@@ -9,7 +9,7 @@ def azurerm_network_interface(crf,cde,crg,headers,requests,sub,json,az2tfmess,cl
         params = {'api-version': '2018-07-01'}
         r = requests.get(url, headers=headers, params=params)
         azr= r.json()["value"]
-
+#         print(json.dumps(azr, indent=4, separators=(',', ': ')))
 
         tfrmf="130-"+tfp+"-staterm.sh"
         tfimf="130-"+tfp+"-stateimp.sh"
@@ -18,11 +18,20 @@ def azurerm_network_interface(crf,cde,crg,headers,requests,sub,json,az2tfmess,cl
         print ("# " + tfp,)
         count=len(azr)
         print (count)
-        for i in range(0, count):
 
+#         print(json.dumps(azr[5], indent=4, separators=(',', ': ')))
+#         print(azr[0]["location"])
+#         print(azr[0]["id"])
+#         print(azr[1]["location"])
+#         print(azr[1]["name"])
+        for i in range(0, count):
+#             name=azr[i]["name"]
+#             print("NAME=" + name + '-' + str(i))
+#             print(json.dumps(azr[i], indent=4, separators=(',', ': ')))
             name=azr[i]["name"]
-            loc=azr[i]["location"]
             id=azr[i]["id"]
+            loc = azr[i]["location"] if 'location' in azr[i] else  "no----location!"
+            #loc=azr[i]["location"]
             rgs=id.split("/")[4]
             rg=id.split("/")[4].replace(".","-").lower()
             
